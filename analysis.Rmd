@@ -1,0 +1,34 @@
+---
+title: "analysis"
+author: "Zheyan Liu"
+date: "3/17/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+```
+
+# Data Processing
+
+```{r}
+df = read_delim("data/student-por.csv")
+```
+Model with G1, G2
+
+```{r}
+reg = lm(G3~., data=df)
+
+summary(reg)
+```
+
+
+Model without G1, G2
+
+```{r}
+df_sub = df %>% select(-G1, -G2)
+reg = lm(G3~., data=df_sub)
+
+summary(reg)
+```
+
